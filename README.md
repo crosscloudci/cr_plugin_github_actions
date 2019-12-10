@@ -4,9 +4,9 @@
 
 **Required Arguments**
 
--p or --project is the project name in the format of orgname/project
--c or --commit is the commit reference
--t or --tag is the tag name
+* -p or --project is the project name in the format of orgname/project
+* -c or --commit is the commit reference
+* -t or --tag is the tag name
 
 ## Status executable and response format
 
