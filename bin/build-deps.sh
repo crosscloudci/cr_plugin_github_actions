@@ -9,4 +9,4 @@ pwd
 ls -al
 
 ln -s /usr/local/crystal-0.31.1-1/bin/crystal /usr/local/bin/crystal
-export PATH=/usr/local/bin:$PATH
+# export PATH=/usr/local/bin:$PATH
