@@ -29,6 +29,26 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
       response_body = JSON.parse(r.body)
       @returned_build_status = response_body["state"].as_s
       @returned_build_url = response_body["statuses"].as_a.last["target_url"].as_s
+      case @returned_build_status
+      when "scheduled"
+        @returned_build_status = "running"
+      when "running"
+        @returned_build_status = "running"
+      when "retried"
+        @returned_build_status = "running"
+      when "started"
+        @returned_build_status = "running"
+      when "passed"
+        @returned_build_status = "success"
+      when "canceled"
+        @returned_build_status = "failed"
+      when "infrastructure_fail"
+        @returned_build_status = "failed"
+      when "timedout"
+        @returned_build_status = "failed"
+      when "failure"
+        @returned_build_status = "failed"
+      end
     end 	
     puts "status\t build_url\n"
     puts "#{@returned_build_status}\t #{@returned_build_url}"
