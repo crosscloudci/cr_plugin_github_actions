@@ -6,7 +6,8 @@ module CrPluginGithubActions::CLI::Commands::CIAuth
 			# Set basic auth
 			# basic_auth "#{ci_auth["key"]}", ""
 			# Enable logging
-			logging true
+			# logging true
+			logging false
 			timeout 10.seconds
       headers "Accept": "application/vnd.github.antiope-preview+json"
 			headers "Accept": "application/json"

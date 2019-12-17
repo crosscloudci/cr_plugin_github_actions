@@ -31,6 +31,6 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
       @returned_build_url = response_body["statuses"].as_a.last["target_url"].as_s
     end 	
     puts "status\t build_url\n"
-    puts "#{@returned_build_status} #{@returned_build_url}"
+    puts "#{@returned_build_status}\t #{@returned_build_url}"
   end 
 end
