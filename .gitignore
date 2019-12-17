@@ -3,3 +3,5 @@
 /bin/status
 /.shards/
 *.dwarf
+*.swp
+*.swo

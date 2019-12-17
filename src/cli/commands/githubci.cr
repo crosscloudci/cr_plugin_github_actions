@@ -12,19 +12,18 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
     short: p,
     required: true
 
-  define_flag ref : String,
+  define_flag commit : String,
     description: "The commit ref of the project build that is of interest, e.g. 834f6f1 or a1724ce5e0c59bef272723f328e675980ddc90ea",
-    long: ref,
-    short: r,
+    long: commit,
+    short: c,
     required: true
 
   @returned_build_status = String.new
   @returned_build_url = String.new
   def run 
     client = init_github_http_client
-    r = client.get("/repos/#{flags.project}/commits/#{URI.encode_www_form(flags.ref)}/status")
+    r = client.get("/repos/#{flags.project}/commits/#{URI.encode_www_form(flags.commit)}/status")
     #for checkruns API
-    # r = client.get("/repo/#{URI.encode_www_form(flags.owner)}/#{URI.encode_www_form(flags.project)}/commits/#{URI.encode_www_form(flags.ref)}/check-runs")
     begin
       r.raise_for_status
       response_body = JSON.parse(r.body)

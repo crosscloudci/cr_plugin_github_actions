@@ -17,11 +17,19 @@
 5. The build_url should be the url where the status was found
 
 
-```
-./ci_plugin_travis_go status -p "linkerd/linkerd2" -c f27d7b65
-status  build_url
-success https://travis-ci.org/crosscloudci/testproj/builds/572521581
-```
+## Execution
+`
+./cli status --project crosscloudci/testproj --commit 4e9eaf4f50d39f7823406370b41402db5cb13009 
+status   build_url
+failure https://travis-ci.org/crosscloudci/testproj/builds/622960349?utm_source=github_status&utm_medium=notification
+`
+
+## Building
+
+`
+shards
+crystal build src/cli.cr
+`
 
 ## Contributing
 
@@ -35,3 +43,4 @@ success https://travis-ci.org/crosscloudci/testproj/builds/572521581
 
 - [W. Watson](https://github.com/wavell) - creator and maintainer
 - [Joshua Darius](https://github.com/nupejosh) - creator and maintainer
+
