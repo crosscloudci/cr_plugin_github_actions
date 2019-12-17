@@ -25,8 +25,11 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
     r = client.get("/repos/#{flags.project}/commits/#{URI.encode_www_form(flags.commit)}/status")
     #for checkruns API
     begin
-      r.raise_for_status
       response_body = JSON.parse(r.body)
+      if response_body["state"]? == nil
+        puts "ERROR: failed to find project with given commit. #{response_body["message"]}"
+        exit 1
+      end
       @returned_build_status = response_body["state"].as_s
       @returned_build_url = response_body["statuses"].as_a.last["target_url"].as_s
       case @returned_build_status
