@@ -53,7 +53,7 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
         @returned_build_status = "failed"
       end
     end 	
-    puts "status\t build_url\n"
-    puts "#{@returned_build_status}\t #{@returned_build_url}"
+    puts "status\tbuild_url\n"
+    puts "#{@returned_build_status}\t#{@returned_build_url}"
   end 
 end
