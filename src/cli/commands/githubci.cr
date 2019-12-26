@@ -31,7 +31,11 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
         exit 1
       end
       @returned_build_status = response_body["state"].as_s
-      @returned_build_url = response_body["statuses"].as_a.last["target_url"].as_s
+      if @returned_build_status == "pending"
+        @returned_build_url = "N/A"
+      else
+        @returned_build_url = response_body["statuses"].as_a.last["target_url"].as_s
+      end
       case @returned_build_status
       when "scheduled"
         @returned_build_status = "running"
@@ -43,6 +47,8 @@ class CrPluginGithubActions::CLI::Commands::GithubActions < Admiral::Command
         @returned_build_status = "running"
       when "passed"
         @returned_build_status = "success"
+      when "pending"
+        @returned_build_status = "failed"
       when "canceled"
         @returned_build_status = "failed"
       when "infrastructure_fail"
